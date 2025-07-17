@@ -12,7 +12,7 @@ The Python wheels have the following requirements:
 
 * OS: Linux (x86-64, AArch64), macOS (x86-64, ARM64), Windows (x86-64)
 * Python version: >= 3.7
-* pip version: >= 19.3 to support `manylinux2014` wheels
+* pip version: >= 19.3 to support `manylinux_2_28` wheels
 
 ```{admonition} GPU support
 The Linux and Windows Python wheels support GPU execution. Install [CUDA](https://developer.nvidia.com/cuda-toolkit) 12.x to use the GPU.
