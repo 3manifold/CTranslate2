@@ -160,15 +160,12 @@ jobs:
           CIBW_ENVIRONMENT_PASS_LINUX: CIBW_ARCHS
           CIBW_ENVIRONMENT_WINDOWS: CTRANSLATE2_ROOT='${{ github.workspace }}\install'
           CIBW_ENVIRONMENT_MACOS: "CTRANSLATE2_ROOT='/usr/local' MACOSX_DEPLOYMENT_TARGET=10.13"
-          CIBW_BEFORE_ALL_LINUX: |
-            dnf install -y gcc-toolset-12-gcc gcc-toolset-12-gcc-c++ && 
-            source /opt/rh/gcc-toolset-12/enable && 
-            python/tools/prepare_build_environment_linux.sh
+          CIBW_BEFORE_ALL_LINUX: python/tools/prepare_build_environment_linux.sh
           CIBW_BEFORE_ALL_MACOS: python/tools/prepare_build_environment_macos.sh
           CIBW_BEFORE_ALL_WINDOWS: bash python/tools/prepare_build_environment_windows.sh
           CIBW_BEFORE_BUILD: pip install -r python/install_requirements.txt
-          CIBW_MANYLINUX_X86_64_IMAGE: manylinux_2_28
-          CIBW_MANYLINUX_AARCH64_IMAGE: manylinux_2_28
+          CIBW_MANYLINUX_X86_64_IMAGE: manylinux2014
+          CIBW_MANYLINUX_AARCH64_IMAGE: manylinux2014
           CIBW_ARCHS: ${{ matrix.arch }}
           CIBW_SKIP: pp* *-musllinux_*
 
