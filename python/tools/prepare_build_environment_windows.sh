@@ -29,13 +29,24 @@ rmdir "$CUDNN_ROOT/include/12.4"
 cp -r "$CUDNN_ROOT"/* "$CUDA_ROOT"
 rm cudnn.exe
 
+echo "Installing minimal Visual Studio 2022 components..."
+curl --netrc-optional -L -nv -o vs_buildtools.exe https://aka.ms/vs/17/release/vs_buildtools.exe
+
+# Install only the essential components needed for CUDA
+./vs_buildtools.exe --quiet --wait \
+  --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 \
+  --add Microsoft.VisualStudio.Component.Windows10SDK.19041 \
+  --add Microsoft.VisualStudio.Component.VC.CMake.Project
+
+rm vs_buildtools.exe
+
 # See https://github.com/oneapi-src/oneapi-ci for installer URLs
 curl --netrc-optional -L -nv -o webimage.exe \
      --retry 5 \
      --retry-delay 10 \
      --retry-max-time 300 \
      --continue-at - \
-     https://registrationcenter-download.intel.com/akdlm/irc_nas/18970/w_BaseKit_p_2022.3.1.17310_offline.exe
+     https://registrationcenter-download.intel.com/akdlm/IRC_NAS/2cbb02eb-dd4c-4058-a4ac-2e38729a8409/intel-oneapi-base-toolkit-2025.1.2.7_offline.exe
 ./webimage.exe -s -x -f webimage_extracted --log extract.log
 rm webimage.exe
 ./webimage_extracted/bootstrapper.exe -s --action install --components="intel.oneapi.win.mkl.devel" --eula=accept -p=NEED_VS2017_INTEGRATION=0 -p=NEED_VS2019_INTEGRATION=0 --log-dir=.
