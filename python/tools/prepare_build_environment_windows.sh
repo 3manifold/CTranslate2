@@ -38,7 +38,7 @@ curl --netrc-optional -L -nv -o webimage.exe \
      https://registrationcenter-download.intel.com/akdlm/irc_nas/18970/w_BaseKit_p_2022.3.1.17310_offline.exe
 ./webimage.exe -s -x -f webimage_extracted --log extract.log
 rm webimage.exe
-./webimage_extracted/bootstrapper.exe -s --action install --components="intel.oneapi.win.mkl.devel" --eula=accept  --log-dir=.
+./webimage_extracted/bootstrapper.exe -s --action install --components="intel.oneapi.win.mkl.devel" --eula=accept -p=NEED_VS2017_INTEGRATION=0 -p=NEED_VS2019_INTEGRATION=0  --log-dir=.
 
 ONEDNN_VERSION=3.1.1
 curl --netrc-optional -L -O https://github.com/oneapi-src/oneDNN/archive/refs/tags/v${ONEDNN_VERSION}.tar.gz
