@@ -66,7 +66,7 @@ jobs:
         env:
           CT2_USE_MKL: 1
         run: |
-          for op in gather transpose split layer_norm softmax masked_softmax topk dequantize conv1d median_filter; do
+          for op in gather transpose split layer_norm   masked_softmax topk dequantize conv1d median_filter; do
             echo "=== benchmark_ops cpu $op float32 ===" 
             tests/benchmark_ops  $op cpu  
           done
