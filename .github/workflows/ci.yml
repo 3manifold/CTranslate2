@@ -40,7 +40,7 @@ jobs:
           MKL_VERSION: 2023.0.0
         run: |
           sudo apt-get install -y intel-oneapi-mkl-devel-$MKL_VERSION
-          cmake -DCMAKE_INSTALL_PREFIX=$PWD/install -DBUILD_TESTS=ON  -DOPENMP_RUNTIME=NONE .
+          cmake -DCMAKE_INSTALL_PREFIX=$PWD/install -DBUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Release -DOPENMP_RUNTIME=NONE .
 
       - name: Configure with DNNL
         if: startsWith(matrix.os, 'ubuntu') && matrix.backend == 'dnnl'
